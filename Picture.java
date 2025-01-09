@@ -97,13 +97,18 @@ public class Picture extends SimplePicture {
             // bottom right side
 
 
-        }
     }
 
     /** Method to set the blue to 0 */
     public void zeroBlue() {
         Pixel[][] pixels = this.getPixels2D();
-
+        int height = pixels.length;
+        int width = pixels[0].length;
+        for(int row = 0; row < height; row++){
+            for(int column = 0; column < width; column++){
+                pixels[row][column].setBlue(0);
+            }
+        }
     }
 
     /**
@@ -111,41 +116,83 @@ public class Picture extends SimplePicture {
      */
     public void keepOnlyBlue() {
         Pixel[][] pixels = this.getPixels2D();
-
+        int height = pixels.length;
+        int width = pixels[0].length;
+        for(int row = 0; row < height; row++){
+            for(int column = 0; column < width; column++){
+                pixels[row][column].setRed(0);
+                pixels[row][column].setGreen(0);
+            }
+        }
     }
 
     /** Method that keeps only the red color */
     public void keepOnlyRed() {
         Pixel[][] pixels = this.getPixels2D();
-
+        int height = pixels.length;
+        int width = pixels[0].length;
+        for(int row = 0; row < height; row++){
+            for(int column = 0; column < width; column++){
+                pixels[row][column].setBlue(0);
+                pixels[row][column].setGreen(0);
+            }
+        }
     }
 
     /** Method that keeps only the green color */
     public void keepOnlyGreen() {
         Pixel[][] pixels = this.getPixels2D();
-        // traverse the rows
-        // traverse the columns
-
+        int height = pixels.length;
+        int width = pixels[0].length;
+        for(int row = 0; row < height; row++){
+            for(int column = 0; column < width; column++){
+                pixels[row][column].setBlue(0);
+                pixels[row][column].setRed(0);
+            }
+        }
     }
 
     /** Method that negates the colors in the picture */
     public void negate() {
         Pixel[][] pixels = this.getPixels2D();
-
+        int height = pixels.length;
+        int width = pixels[0].length;
+        for(int row = 0; row < height; row++){
+            for(int column = 0; column < width; column++){
+                pixels[row][column].setBlue(255 - pixels[row][column].getBlue());
+                pixels[row][column].setRed(255 - pixels[row][column].getRed());
+                pixels[row][column].setGreen(255 - pixels[row][column].getGreen());
+            }
+        }
     }
 
     /** Method that makes the picture all shades of gray */
     public void grayscale() {
         Pixel[][] pixels = this.getPixels2D();
-
+        int height = pixels.length;
+        int width = pixels[0].length;
+        for(int row = 0; row < height; row++){
+            for(int column = 0; column < width; column++){
+                int avgColor = (pixels[row][column].getBlue() + pixels[row][column].getRed() + pixels[row][column].getGreen()) / 3;
+                pixels[row][column].setBlue(avgColor);
+                pixels[row][column].setGreen(avgColor);
+                pixels[row][column].setRed(avgColor);
+            }
+        }
     }
 
     /**
      * Method to fix pictures taken underwater
      */
     public void fixUnderwater() {
-        Pixel[][] grid = this.getPixels2D();
-
+        Pixel[][] pixels = this.getPixels2D();
+        int height = pixels.length;
+        int width = pixels[0].length;
+        for(int row = 0; row < height; row++){
+            for(int column = 0; column < width; column++){
+                pixels[row][column].setRed((int) (pixels[row][column].getRed() + 50));
+            }
+        }
     }
 
     /**
