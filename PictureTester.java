@@ -117,7 +117,7 @@ public class PictureTester {
 
     /** Method to test mirrorVertical */
     public static void testMirrorVertical() {
-        Picture caterpillar = new Picture("caterpillar.jpg");
+        Picture caterpillar = new Picture("beach.jpg");
         caterpillar.mirrorVertical();
         caterpillar.explore();
     }
@@ -138,7 +138,7 @@ public class PictureTester {
 
     /** Method to test mirrorHorizontalBotToTop */
     public static void testMirrorHorizontalBotToTop() {
-        Picture swan = new Picture("swan.jpg");
+        Picture swan = new Picture("redMotorcycle.jpg");
         swan.mirrorHorizontalBotToTop();
         swan.explore();
     }
