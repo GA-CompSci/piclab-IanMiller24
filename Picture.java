@@ -313,11 +313,19 @@ public class Picture extends SimplePicture {
         int height = pixels.length;
         int width = pixels[0].length;
 
-        for(int row = 155; row < 297; row++){
-            for(int col = 105; col < 301; col++){
-                Pixel topPixel = pixels[row][col];
-                Pixel bottomPixel = pixels[height - 1 - row][col];
-                bottomPixel.setColor(topPixel.getColor());
+        for(int row = 157; row < 197; row++){
+            for(int col = 5; col < 176; col++){
+                Pixel leftPixel = pixels[row][col];
+                Pixel rightPixel = pixels[row + 75][width - 1 - col];
+                rightPixel.setColor(leftPixel.getColor());
+            }
+        }
+
+        for(int row = 157; row < 197; row++){
+            for(int col = 226; col < 305; col++){
+                Pixel leftPixel = pixels[row][col];
+                Pixel rightPixel = pixels[row + 75][width - 1 - col];
+                rightPixel.setColor(leftPixel.getColor());
             }
         }
         
