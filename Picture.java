@@ -190,7 +190,7 @@ public class Picture extends SimplePicture {
         int width = pixels[0].length;
         for(int row = 0; row < height; row++){
             for(int column = 0; column < width; column++){
-                pixels[row][column].setRed((int) (pixels[row][column].getRed() * 1.5));
+                pixels[row][column].setRed((int) (pixels[row][column].getRed() * 2.4));
                 pixels[row][column].setBlue((int) (pixels[row][column].getBlue() * 0.5));
                 pixels[row][column].setGreen((int) (pixels[row][column].getGreen() * 0.5));
             }
