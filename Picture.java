@@ -307,8 +307,8 @@ public class Picture extends SimplePicture {
 
     }
 
-    /** Mirror just part of a picture of a snowman */
-    public void mirrorArms() {
+    /** OG draft before we did it together in class */
+    public void mirrorArmsOG() {
         Pixel[][] pixels = this.getPixels2D();
         int height = pixels.length;
         int width = pixels[0].length;
@@ -316,7 +316,7 @@ public class Picture extends SimplePicture {
         for(int row = 157; row < 197; row++){
             for(int col = 5; col < 176; col++){
                 Pixel leftPixel = pixels[row][col];
-                Pixel rightPixel = pixels[row + 75][width - 1 - col];
+                Pixel rightPixel = pixels[row + 60][width - 1 - col];
                 rightPixel.setColor(leftPixel.getColor());
             }
         }
@@ -324,16 +324,47 @@ public class Picture extends SimplePicture {
         for(int row = 157; row < 197; row++){
             for(int col = 226; col < 305; col++){
                 Pixel leftPixel = pixels[row][col];
-                Pixel rightPixel = pixels[row + 75][width - 1 - col];
+                Pixel rightPixel = pixels[row + 60][width - 1 - col];
                 rightPixel.setColor(leftPixel.getColor());
             }
         }
         
     }
 
+    public void mirrorArms(){
+        Pixel[][] pixels = getPixels2D();
+        int endOfArm1 = 234;
+        int count = 0;
+
+        for(int row = 156; row <= 194; row++){
+            for(int col = 100; col <= 170; col++){
+                Pixel pixel = pixels[row][col];
+                pixels[endOfArm1 - count][col].setColor(pixel.getColor());
+            }
+            count++;
+        }
+
+        for(int row = 156; row <= 194; row++){
+            for(int col = 226; col <= 305; col++){
+                Pixel pixel = pixels[row][col];
+                pixels[endOfArm1 - count + 40][col].setColor(pixel.getColor());
+            }
+            count++;
+        }
+    }
+
     /** Mirror just the gull */
     public void mirrorGull() {
+        Pixel[][] pixels = getPixels2D();
 
+        for(int row = 230; row <= 320; row++){
+            for(int col = 230; col <= 340; col++){
+                Pixel pixel = pixels[row][col];
+                if(pixel.getBlue() < 120 || pixel.getBlue() < pixel.getRed() + 8){
+                    pixels[row][col + 150].setColor(pixel.getColor());
+                }
+            }
+        }
     }
 
     /**
