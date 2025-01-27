@@ -111,6 +111,17 @@ public class Picture extends SimplePicture {
         }
     }
 
+    public void zeroRed() {
+        Pixel[][] pixels = this.getPixels2D();
+        int height = pixels.length;
+        int width = pixels[0].length;
+        for(int row = 0; row < height; row++){
+            for(int column = 0; column < width; column++){
+                pixels[row][column].setRed(0);
+            }
+        }
+    }
+
     /**
      * Method that keeps only the blue color - sets the red and green to zero
      */
@@ -391,11 +402,47 @@ public class Picture extends SimplePicture {
 
     }
 
+
+    // koala.jpg CumberlandIsland.jpg whiteFlower.jpg
     /** Method to create a collage of several pictures */
     public void createCollage() {
         Pixel[][] pixels = this.getPixels2D();
-
+        Picture katieFancy = new Picture("katieFancy.jpg");
+        Picture jennyred = new Picture("jenny-red.jpg");
+        Picture bluemark = new Picture("blue-mark.jpg");
+        Picture CARTIWLR = new Picture("CARTIWLR.jpg");
+        Picture CARTIALLRED = new Picture("CARTIALLRED.jpg");
         this.popArt();
+
+        bluemark = bluemark.scale(0.5, 0.5);
+        katieFancy = katieFancy.scale(0.7, 0.7);
+        jennyred = jennyred.scale(0.7, 0.7);
+        CARTIWLR = CARTIWLR.scale(0.25, 0.25);
+        CARTIALLRED = CARTIALLRED.scale(0.25, 0.25);
+
+        bluemark.zeroBlue();
+        jennyred.zeroRed();
+        katieFancy.grayscale();
+        CARTIWLR.zeroRed();
+        CARTIALLRED.zeroRed();
+        
+        Pixel[][] allRedPixelArray = CARTIALLRED.getPixels2D();
+        for(int row = 0; row < allRedPixelArray.length; row++){
+            for(int column = 0; column < allRedPixelArray[0].length; column++){
+                if(allRedPixelArray[row][column].getBlue() > 10 && allRedPixelArray[row][column].getGreen() > 10){
+                    allRedPixelArray[row][column].setBlue(100);
+                    allRedPixelArray[row][column].setGreen(100);
+                }
+            }
+        }
+
+        this.copy(bluemark, 0, 0);
+        this.copy(jennyred, 250, 400);
+        this.copy(katieFancy, 0, 500);
+        this.copy(CARTIWLR, 300, 0);
+        this.copy(CARTIALLRED, 300, 150);
+
+        // this.copy(robot, 300, 500);
     }
 
     /**

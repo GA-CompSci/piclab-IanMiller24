@@ -39,11 +39,11 @@ public class PictureTester {
         // ACTIVITY 7
         // testMirrorTemple();
         // testMirrorArms();
-        testMirrorGull();
+        // testMirrorGull();
 
         // ---------------
         // ACTIVITY 8
-        // testCollage();
+        testCollage();
 
         // ---------------
         // ACTIVITY 9
@@ -131,8 +131,8 @@ public class PictureTester {
 
     /** Method to test mirrorHorizontal */
     public static void testMirrorHorizontal() {
-        Picture cycle = new Picture("redMotorcycle.jpg");
-        cycle.mirrorHorizontal();
+        Picture cycle = new Picture("blue-mark.jpg");
+        // cycle.mirrorHorizontal();
         cycle.explore();
     }
 
