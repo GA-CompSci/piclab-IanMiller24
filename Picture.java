@@ -386,9 +386,28 @@ public class Picture extends SimplePicture {
     public void edgeDetection(int edgeDist) {
         Pixel leftPixel = null;
         Pixel rightPixel = null;
+        Pixel belowPixel = null;
+        Pixel diagonalPixel = null;
         Pixel[][] pixels = this.getPixels2D();
+
+        // store backup of original unmodified
         Picture swan = new Picture("swan.jpg");
         Pixel[][] original = swan.getPixels2D();
+
+        for(int row = 0; row < pixels.length - 1; row++){
+            for(int col = 0; col < pixels[0].length - 1; col++){
+                leftPixel = pixels[row][col];
+                rightPixel = pixels[row][col + 1];
+                belowPixel = pixels[row + 1][col];
+                diagonalPixel = pixels[row + 1][col + 1];
+
+                if(leftPixel.colorDistance(rightPixel.getColor()) > edgeDist || leftPixel.colorDistance(belowPixel.getColor()) > edgeDist || leftPixel.colorDistance(diagonalPixel.getColor()) > edgeDist){
+                    pixels[row][col].setColor(Color.BLACK);
+                } else {
+                    pixels[row][col].setColor(Color.WHITE);
+                }
+            }
+        }
 
     }
 
